@@ -1,6 +1,6 @@
 {
-  "name": "envsub",
-  "version": "4.1.0",
+  "name": "mytabru-envsub",
+  "version": "4.1.1",
   "description": "envsub is envsubst for Node.js",
   "author": "Daniel Lewis BSc(Hons)",
   "license": "ISC",

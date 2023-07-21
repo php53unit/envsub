@@ -68,7 +68,7 @@ let envsubParser = (contents, args) => {
     if (!opts.envs.length) {
 
       // Find all env var matches      
-      const regexp = dRegex.type === SYNTAX.DOLLAR_CURLY ? 
+      const regexp = (dRegex.type === SYNTAX.DOLLAR_CURLY || dRegex.type === SYNTAX.DOLLAR_BOTH) ? 
         // default value support is only available with dollar-curly syntax
         [ dRegex.lhs, dRegex.sep, config.curlyRegex(false), dRegex.sep, dRegex.rhs ].join('') :
         // Fallback to everything else
@@ -102,7 +102,7 @@ let envsubParser = (contents, args) => {
       });
 
       // In case of all flag we want to replace the ones with default value set
-      if (opts.all && dRegex.type === SYNTAX.DOLLAR_CURLY) {
+      if (opts.all && (dRegex.type === SYNTAX.DOLLAR_CURLY || dRegex.type === SYNTAX.DOLLAR_BOTH) ){
         let regexp = [ dRegex.lhs, dRegex.sep, config.curlyRegex(true), dRegex.sep, dRegex.rhs ].join('');
         let matches = contents.matchAll(new RegExp(regexp, 'g'));
         matches = [...matches].map(([match, envVarName, defaultValue]) => [match, envVarName, defaultValue]);
